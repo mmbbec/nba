@@ -1,0 +1,6 @@
+{
+  "name": "NBA Accreditation Automation Suite",
+  "description": "End-to-end NBA (National Board of Accreditation) automation package for institutional documentation, SAR metrics, CO-PO attainment, data validation, and evidence tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* NBA Accreditation PDF & Print Engine Rules */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 9.5pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* Hide all non-printable application frames, headers, navbars and background */
+  header, nav, footer, .print-hide, .no-print, [data-print-hide] {
+    display: none !important;
+  }
+
+  /* Modal container adjustments for printing to prevent viewport clipping */
+  .printable-modal-overlay {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    inset: auto !important;
+  }
+
+  .printable-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .printable-scroll-container {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  /* Robust Page Breaks */
+  .page-break-before,
+  .print-page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .page-break-after,
+  .print-page-break-after {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .page-break-inside-avoid,
+  .print-page-break-inside-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Dedicated Automatic Page Break Marker */
+  .auto-page-break-marker {
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    page-break-before: always !important;
+    break-before: page !important;
+    clear: both !important;
+  }
+
+  /* Prevent row clipping in tables across pages */
+  table {
+    page-break-inside: auto !important;
+  }
+
+  tr, td, th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure faculty dossier page starts cleanly */
+  .faculty-dossier-page {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  /* Keep signature and declaration block together on single page */
+  .signature-block,
+  .statutory-declaration {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
