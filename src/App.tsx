@@ -181,6 +181,27 @@ export default function App() {
     addAuditLog('Faculty Master', fac?.name || id, 'Deleted faculty record');
   };
 
+  const handleAddStudent = (student: MasterStudent) => {
+    setStudents((prev) => [student, ...prev]);
+    addAuditLog('Student Master', student.name, `Added student: ${student.usnOrRollNo}`);
+  };
+
+  const handleUpdateStudent = (student: MasterStudent) => {
+    setStudents((prev) => prev.map((s) => (s.id === student.id ? student : s)));
+    addAuditLog('Student Master', student.name, `Updated student record: ${student.usnOrRollNo}`);
+  };
+
+  const handleDeleteStudent = (id: string) => {
+    const st = students.find((s) => s.id === id);
+    setStudents((prev) => prev.filter((s) => s.id !== id));
+    addAuditLog('Student Master', st?.name || id, `Deleted student: ${st?.usnOrRollNo || id}`);
+  };
+
+  const handleUpdateInstitution = (updated: InstitutionMaster) => {
+    setInstitution(updated);
+    addAuditLog('Institutional Master', updated.collegeName, 'Updated institutional parameters');
+  };
+
   const handleUpdateCourseFileStatus = (
     courseCode: string,
     itemKey: string,
@@ -241,6 +262,7 @@ export default function App() {
         onOpenDeptProfilePrint={handleOpenDeptProfilePdf}
         onOpenFacultyProfilePrint={() => handleOpenFacultyBulkPdf(facultyList)}
         onRunAudit={() => setActiveTab('audit')}
+        onUpdateInstitution={handleUpdateInstitution}
       />
 
       {/* Main Tab Navigation Bar */}
@@ -422,7 +444,9 @@ export default function App() {
             students={students}
             yearBatchData={yearBatchData}
             onUpdateBatchData={handleUpdateBatchData}
-            onAddStudent={(newStudent) => setStudents((prev) => [newStudent, ...prev])}
+            onAddStudent={handleAddStudent}
+            onUpdateStudent={handleUpdateStudent}
+            onDeleteStudent={handleDeleteStudent}
           />
         )}
 
